@@ -131,8 +131,8 @@ class PyProxmox:
         try:
             self.returned_data = self.response.json()
             self.returned_data.update({'status': {'code': self.response.status_code,
-                                                'ok': self.response.ok,
-                                                'reason': self.response.reason}})
+                                                  'ok': self.response.ok,
+                                                  'reason': self.response.reason}})
             return self.returned_data
         except json.JSONDecodeError:
             print("Error in trying to process JSON")
