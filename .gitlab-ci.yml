@@ -1,0 +1,17 @@
+---
+default:
+  tags:
+    - python
+
+image: python:3.12-alpine
+
+stages:
+  - lint
+  - build
+
+flake8:
+  stage: lint
+  before_script:
+    - pip install --root-user-action=ignore flake8
+  script:
+    - flake8 .
