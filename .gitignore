@@ -1,0 +1,9 @@
+.DS_Store
+**/*.ini
+*.swp
+**/__pycache__
+**tests*
+**test*
+**/*.txt
+**/*.ods
+dist/**
