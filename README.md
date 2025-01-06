@@ -1,4 +1,4 @@
-pyproxmox
+pypbs
 =========
 
 ## A Python wrapper for the Proxmox Backup Server API
