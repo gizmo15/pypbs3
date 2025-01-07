@@ -124,3 +124,19 @@ For more information on the accepted variables please see [PBS API DOC](https://
 ##### Metrics Methods
 		get_server_metrics()
 "Get backup server metrics. Returns JSON"
+
+##### Verify Methods
+		get_verify_jobs()
+"Get list of all verify jobs. Returns JSON"
+
+		get_verify_job_info()
+"Get specific verify job informations. Returns JSON"
+
+		create_verify_job(post_data)
+"Create verify job. Returns JSON"
+
+		update_verify_job(verify_id, post_data)
+"Update specific verify job parameters. Returns JSON"
+
+		delete_verify_job(verify_id)
+"Delete specific verify job. Returns JSON"

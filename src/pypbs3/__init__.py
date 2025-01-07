@@ -284,6 +284,37 @@ class PyProxmox:
         data_json = json.dumps(data, indent=4, sort_keys=True)
         return json.loads(data_json)
 
+    # Verify Methods
+    def get_verify_jobs(self):
+        """Get list of all verify jobs. Returns JSON"""
+        data = self.connect('get', 'config/verify', None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def get_verify_job_info(self, verify_id):
+        """Get specific verify job informations. Returns JSON"""
+        data = self.connect('get', f"config/verify/{verify_id}", None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def create_verify_job(self, post_data):
+        """Create verify job. Returns JSON"""
+        data = self.connect('post', 'config/verify', post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return data_json
+
+    def update_verify_job(self, verify_id, post_data):
+        """Update specific verify job parameters. Returns JSON"""
+        data = self.connect('put', f"config/verify/{verify_id}", post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def delete_verify_job(self, verify_id):
+        """Delete specific verify job. Returns JSON"""
+        data = self.connect('delete', f"config/verify/{verify_id}", None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return data_json
+
 
 if __name__ == "__main__":
     print("Module to interact with proxmox api")
