@@ -246,6 +246,44 @@ class PyProxmox:
         data_json = json.dumps(data, indent=4, sort_keys=True)
         return data_json
 
+    # Remote Methods
+    def get_remotes(self):
+        """Get list of remotes. Returns JSON"""
+        data = self.connect('get', 'config/remote', None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def get_remote_target_info(self, remote_name):
+        """Get specific remote informations. Returns JSON"""
+        data = self.connect('get', f"config/remote/{remote_name}", None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def create_remote_target(self, post_data):
+        """Create remote target. Returns JSON"""
+        data = self.connect('post', 'config/remote', post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return data_json
+
+    def update_remote_target(self, remote_name, post_data):
+        """Update specific remote target parameters. Returns JSON"""
+        data = self.connect('put', f"config/remote/{remote_name}", post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def delete_remote_targety(self, remote_name):
+        """Delete specific remote target. Returns JSON"""
+        data = self.connect('delete', f"config/remote/{remote_name}", None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return data_json
+
+    # Metrics Methods
+    def get_server_metrics(self):
+        """Get backup server metrics. Returns JSON"""
+        data = self.connect('get', 'status/metrics', None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
 
 if __name__ == "__main__":
     print("Module to interact with proxmox api")

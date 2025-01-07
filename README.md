@@ -104,3 +104,23 @@ For more information on the accepted variables please see [PBS API DOC](https://
 
 		delete_sync_job(sync_id)
 "Delete specific sync job. Returns JSON"
+
+##### Remote Methods
+		get_remotes()
+"Get list of remotes. Returns JSON"
+
+		get_remote_target_info()
+"Get specific remote informations. Returns JSON"
+
+		create_remote_target(post_data)
+"Create remote target. Returns JSON"
+
+		update_remote_target(sync_id, post_data)
+"Update specific remote target parameters. Returns JSON"
+
+		delete_remote_targety(sync_id)
+"Delete specific remote target. Returns JSON"
+
+##### Metrics Methods
+		get_server_metrics()
+"Get backup server metrics. Returns JSON"
