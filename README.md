@@ -57,7 +57,7 @@ For more information on the accepted variables please see [PBS API DOC](https://
 		get_nodes()
 "Get nodes list. Returns JSON"
 
-##### Datasotre Methods
+##### Datastore Methods
 		get_datastore()
 "List available datastores. Returns JSON"
 
@@ -67,5 +67,40 @@ For more information on the accepted variables please see [PBS API DOC](https://
 		create_datastore(post_data)
 "Create new datastore. Returns JSON"
 
+		update_datastore_info(datastore_name, post_data)
+"Update specific datastore parameters. Returns JSON"
+
 		delete_datastore(datastore_name, post_data)
 "Delete specific datastore. Returns JSON"
+
+##### Prune Methods
+		get_prune_jobs()
+"Get list of scheduled prune jobs. Returns JSON"
+
+		get_prune_job_info()
+"Get specific prune job informations. Returns JSON"
+
+		create_prune_job(post_data)
+"Create scheduled prune job. Returns JSON"
+
+		update_prune_job_info(prune_id, post_data)
+"Update specific prune job parameters. Returns JSON"
+
+		delete_prune_job(prune_id)
+"Delete specific prune job. Returns JSON"
+
+##### Sync Methods
+		get_sync_jobs()
+"Get list of scheduled sync jobs. Returns JSON"
+
+		get_prune_job_info()
+"Get specific sync job informations. Returns JSON"
+
+		create_sync_job(post_data)
+"Create scheduled sync job. Returns JSON"
+
+		update_sync_job_info(sync_id, post_data)
+"Update specific sync job parameters. Returns JSON"
+
+		delete_sync_job(sync_id)
+"Delete specific sync job. Returns JSON"

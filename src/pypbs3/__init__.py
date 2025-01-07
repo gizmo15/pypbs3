@@ -172,9 +172,77 @@ class PyProxmox:
         data_json = json.dumps(data, indent=4, sort_keys=True)
         return data_json
 
-    def delete_datastore(self, datastore, post_data):
-        """Delete datastore. Returns JSON"""
-        data = self.connect('delete', f"config/datastore/{datastore}", post_data)
+    def update_datastore_info(self, datastore_name, post_data):
+        """Update specific datastore parameters. Returns JSON"""
+        data = self.connect('put', f"config/datastore/{datastore_name}", post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def delete_datastore(self, datastore_name, post_data):
+        """Delete specific datastore. Returns JSON"""
+        data = self.connect('delete', f"config/datastore/{datastore_name}", post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return data_json
+
+    # Purne Methods
+    def get_prune_jobs(self):
+        """Get list of scheduled prune jobs. Returns JSON"""
+        data = self.connect('get', 'config/prune', None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def get_prune_job_info(self, prune_id):
+        """Get specific prune job informations. Returns JSON"""
+        data = self.connect('get', f"config/prune/{prune_id}", None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def create_prune_job(self, post_data):
+        """Create scheduled prune job. Returns JSON"""
+        data = self.connect('post', 'config/prune', post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return data_json
+
+    def update_prune_job_info(self, prune_id, post_data):
+        """Update specific prune job parameters. Returns JSON"""
+        data = self.connect('put', f"config/prune/{prune_id}", post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def delete_prune_job(self, prune_id):
+        """Delete specific prune job. Returns JSON"""
+        data = self.connect('delete', f"config/prune/{prune_id}", None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return data_json
+
+    # Sync Methods
+    def get_sync_jobs(self):
+        """Get list of sync jobs. Returns JSON"""
+        data = self.connect('get', 'config/sync', None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def get_sync_job_info(self, sync_id):
+        """Get specific sync job informations. Returns JSON"""
+        data = self.connect('get', f"config/sync/{sync_id}", None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def create_sync_job(self, post_data):
+        """Create sync job. Returns JSON"""
+        data = self.connect('post', 'config/sync', post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return data_json
+
+    def update_sync_job_info(self, sync_id, post_data):
+        """Update specific sync job parameters. Returns JSON"""
+        data = self.connect('put', f"config/sync/{sync_id}", post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def delete_sync_job(self, sync_id):
+        """Delete specific sync job. Returns JSON"""
+        data = self.connect('delete', f"config/sync/{sync_id}", None)
         data_json = json.dumps(data, indent=4, sort_keys=True)
         return data_json
 
