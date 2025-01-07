@@ -14,7 +14,7 @@ Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: requests
 
-pyproxmox
+pypbs
 =========
 
 ## A Python wrapper for the Proxmox Backup Server API

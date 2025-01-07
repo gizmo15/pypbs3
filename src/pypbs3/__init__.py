@@ -146,9 +146,7 @@ class PyProxmox:
                 self.get_auth_data()
                 return self.connect(conn_type, option, post_data)
 
-    # Methods using the GET protocol to communicate with the Proxmox API.
     # Node Methods
-
     def get_nodes(self):
         """Get cluster status information. Returns JSON"""
         data = self.connect('get', 'nodes', None)
@@ -157,14 +155,26 @@ class PyProxmox:
 
     # Datastore Methodes
     def get_datastore(self):
-        """Get all datastore. Returns JSON"""
+        """Get list of all datastores. Returns JSON"""
         data = self.connect('get', 'config/datastore', None)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return json.loads(data_json)
+
+    def get_datastores_usage(self):
+        """Get all datastores usage. Returns JSON"""
+        data = self.connect('get', 'status/datastore-usage', None)
         data_json = json.dumps(data, indent=4, sort_keys=True)
         return json.loads(data_json)
 
     def create_datastore(self, post_data):
         """Create datastore. Returns JSON"""
         data = self.connect('post', 'config/datastore', post_data)
+        data_json = json.dumps(data, indent=4, sort_keys=True)
+        return data_json
+
+    def delete_datastore(self, datastore, post_data):
+        """Delete datastore. Returns JSON"""
+        data = self.connect('delete', f"config/datastore/{datastore}", post_data)
         data_json = json.dumps(data, indent=4, sort_keys=True)
         return data_json
 
