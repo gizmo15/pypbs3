@@ -32,9 +32,9 @@ DATASTORE_PATH = '/mnt/backups'
 disable_warnings(InsecureRequestWarning)
 
 INIT_AUTHENT = ProxAuth(URL, USERAPI, PASSWORD)
-PROXMOX_EXEC = PyProxmox(INIT_AUTHENT)
+PBS_EXEC = PyProxmox(INIT_AUTHENT)
 
-DATASTORES_LIST = PROXMOX_EXEC.get_datastore()
+DATASTORES_LIST = PBS_EXEC.get_datastore()
 
 for DATASTORE in DATASTORES_LIST['data']:
     if DATASTORE_NAME in DATASTORE['name']:
@@ -49,7 +49,7 @@ DATA = {
     'path': DATASTORE_PATH,  # mandatory
     'verify-new': 'true',
 }
-STATUS = PROXMOX_EXEC.create_datastore(DATA)
+STATUS = PBS_EXEC.create_datastore(DATA)
 STATUS_JSON = json.loads(STATUS)
 RESULT_DATA = STATUS_JSON['data']
 RESULT_CODE = STATUS_JSON['status']['code']

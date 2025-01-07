@@ -31,9 +31,9 @@ DATASTORE_NAME = 'backups'
 disable_warnings(InsecureRequestWarning)
 
 INIT_AUTHENT = ProxAuth(URL, USERAPI, PASSWORD)
-PROXMOX_EXEC = PyProxmox(INIT_AUTHENT)
+PBS_EXEC = PyProxmox(INIT_AUTHENT)
 
-DATASTORES_LIST = PROXMOX_EXEC.get_datastore()
+DATASTORES_LIST = PBS_EXEC.get_datastore()
 
 for DATASTORE in DATASTORES_LIST['data']:
     if DATASTORE_NAME not in DATASTORE['name']:
@@ -46,7 +46,7 @@ DATA = {
     'destroy-data': 'true',
     'keep-job-configs': 'true',
 }
-STATUS = PROXMOX_EXEC.delete_datastore(DATASTORE_NAME, DATA)
+STATUS = PBS_EXEC.delete_datastore(DATASTORE_NAME, DATA)
 STATUS_JSON = json.loads(STATUS)
 RESULT_DATA = STATUS_JSON['data']
 RESULT_CODE = STATUS_JSON['status']['code']

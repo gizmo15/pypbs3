@@ -37,9 +37,9 @@ disable_warnings(InsecureRequestWarning)
 
 INIT_AUTHENT = ProxAuth(URL, USERAPI, PASSWORD)
 
-PROXMOX_EXEC = PyProxmox(INIT_AUTHENT)
+PBS_EXEC = PyProxmox(INIT_AUTHENT)
 
-STATUS = PROXMOX_EXEC.get_datastores_usage()
+STATUS = PBS_EXEC.get_datastores_usage()
 for DATASTORE in STATUS['data']:
     print(DATASTORE['store'])
     DATASTORE_SIZE_TOTAL = DATASTORE['total']

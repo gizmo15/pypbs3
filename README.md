@@ -16,47 +16,38 @@ pypbs
 2. Create an instance of the prox_auth class by passing in the
 url or ip of a server in the cluster, username and password
 
-		INIT_AUTHENT = ProxAuth('vnode01.example.org', 'apiuser@pbs', 'examplePassword')
+		INIT_AUTHENT = ProxAuth('pbs01.example.org', 'apiuser@pbs', 'examplePassword')
 
 ATTENTION! The realm can change : @pve or @pam, it depends on your configuration.
 
 3. Create and instance of the pyproxmox class using the auth object as a parameter
 
-		PROXMOX_EXEC = PyProxmox(INIT_AUTHENT)
+		PBS_EXEC = PyProxmox(INIT_AUTHENT)
 
 4. Run the pre defined methods of the pyproxmox class
 
-		STATUS = PROXPROXMOX_EXEC_EXEC.get_nodes()
+		STATUS = PBS_EXEC.get_datastore()
 
 NOTE They all return data in JSON format.
 
 #### Methods requiring post_data
 
 These methods need to passed a correctly formatted dictionary.
-for example, if I was to use the createOpenvzContainer for the above example node
+for example, if I was to use the create_datastore for the above example node
 I would need to pass the post_data with all the required variables for proxmox.
 
 
-Example for lxc :
+Example for datastore creation :
 
-	POST_DATA = {'ostemplate':'local:vztmpl/debian-10-standard_10.7-1_amd64.tar.gz',
-				'vmid':'901','cores':'2','description':'test container',
-				'rootfs':'10','hostname':'test.example.org','memory':'1024',
-				'password':'testPassword','swap':'1024', 'ostype':'debian',
-				'storage':'Stockage1'}
+	DATA = {
+		'name': DATASTORE_NAME,  # mandatory
+		'path': DATASTORE_PATH,  # mandatory
+		'verify-new': 'true',
+	}
 
-	PROXMOX_EXEC.create_openvz_container('vnode01', POST_DATA)
+	PBS_EXEC.create_datastore(POST_DATA)
 
-Example for kvm :
-
-	POST_DATA = {'vmid':'9001', 'cores':'4', 'sockets': 1, 'description':'test kvm',
-				'name':'test.example.org', 'memory':'1024', 'scsi0': 'Stockage1:102/vm-102-disk-0.qcow2,size=32G',
-				'scsihw': 'virtio-scsi-pci', 'net0': 'virtio,bridge=vmbr1',
-				'ide0': 'local:iso/fbsd-122-custom.iso,media=cdrom','ostype':'l26'}
-
-	PROXMOX_EXEC.create_virtual_machine('vnode01', POST_DATA)
-
-For more information on the accepted variables please see http//pve.proxmox.com/pve2-api-doc/
+For more information on the accepted variables please see [PBS API DOC](https://pbs.proxmox.com/docs/api-viewer/index.html)
 
 ### Current List of Methods
 
@@ -70,5 +61,11 @@ For more information on the accepted variables please see http//pve.proxmox.com/
 		get_datastore()
 "List available datastores. Returns JSON"
 
+		get_datastores_usage()
+"Get usage of all datastores. Returns JSON"
+
 		create_datastore(post_data)
 "Create new datastore. Returns JSON"
+
+		delete_datastore(datastore_name, post_data)
+"Delete specific datastore. Returns JSON"
