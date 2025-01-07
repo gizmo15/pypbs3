@@ -45,8 +45,8 @@ for DATASTORE in DATASTORES_LIST['data']:
         print(f"Datastore {DATASTORE_NAME} not found, creation in progress")
 
 DATA = {
-    'name': DATASTORE_NAME, #  mandatory
-    'path': DATASTORE_PATH, #  mandatory
+    'name': DATASTORE_NAME,  # mandatory
+    'path': DATASTORE_PATH,  # mandatory
     'verify-new': 'true',
 }
 STATUS = PROXMOX_EXEC.create_datastore(DATA)
