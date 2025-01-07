@@ -178,5 +178,6 @@ class PyProxmox:
         data_json = json.dumps(data, indent=4, sort_keys=True)
         return data_json
 
+
 if __name__ == "__main__":
     print("Module to interact with proxmox api")

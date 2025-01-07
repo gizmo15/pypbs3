@@ -14,7 +14,7 @@ INI_CONF = "./proxmox_api.ini"
 
 if not pathlib.Path(INI_CONF).exists():
     print("Config file not found!")
-    print("Need the config file in {}".format(INI_CONF))
+    print(f"Need the config file in {INI_CONF}")
     sys.exit(1)
 
 CONFIG = ConfigParser()

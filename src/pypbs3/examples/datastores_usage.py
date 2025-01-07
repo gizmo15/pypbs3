@@ -10,10 +10,12 @@ from urllib3 import disable_warnings
 from urllib3.exceptions import InsecureRequestWarning
 from pypbs3 import ProxAuth, PyProxmox
 
+
 def convert_size(entry_size):
     """Convert size octets to gigabytes."""
     output_size = entry_size / 1024 / 1024 / 1024
     return output_size
+
 
 # Read conf.ini
 INI_CONF = "./proxmox_api.ini"
